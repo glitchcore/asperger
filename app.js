@@ -6,11 +6,13 @@ let main_scene;
 function app(pixi) {
     let stage = pixi.stage;
 
-    PIXI.utils.sayHello("Drop to stack begin!");
+    PIXI.utils.sayHello("LD44 begin!");
 
     main_scene = Main_scene(pixi);
     main_scene.visible = false;
     stage.addChild(main_scene);
+
+    world(main_scene);
 
     window.addEventListener(
         "keydown",
@@ -35,7 +37,6 @@ function app(pixi) {
     pixi.ticker.add(delta => update(delta, performance.now()));
 
     select_scene(main_scene);
-    // select_scene(game_scene);
 }
 
 let current_scene = null;

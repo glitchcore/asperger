@@ -62,7 +62,7 @@ function Main_scene(pixi) {
 
     let messages = [];
     const MESSAGES_SIZE = 10;
-    function add_message(next_message) {
+    scene.add_message = (next_message) => {
         let text = new Text(next_message.text, next_message.permanent ? RED_STYLE_H2 : DARK_STYLE_H2);
         text.position.set(margin_left, text_bottom - font_height);
         scene.addChild(text);
@@ -113,6 +113,8 @@ function Main_scene(pixi) {
         }*/
     };
 
+    scene.cmd_cb = null;
+
     scene.key_handler = (key, isPress) => {
         if(isPress === true) {
             if(key === 13) { // pressed enter
@@ -121,7 +123,10 @@ function Main_scene(pixi) {
                     code = "0XBEGIN";
                 }
 
-                add_message({text: code, permanent: code[0] === "0"});
+                if(scene.cmd_cb !== null) {
+                    scene.cmd_cb(code);
+                }
+                
                 clear_letters();
                 
             }
