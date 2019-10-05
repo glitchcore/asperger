@@ -2,6 +2,8 @@ function Main_scene(pixi) {
     let scene = new Container();
 
     let sheet = null;
+    scene.person = null;
+
     PIXI.loader
         .add("assets/spritesheet.json")
         .load(() => {
@@ -10,19 +12,24 @@ function Main_scene(pixi) {
             console.log(sheet);
 
             let background = new PIXI.Sprite(sheet.textures["city_0_back.png"]);
+            background.width *= 1.5;
+            background.height *= 1.5;
+
             scene.addChild(background);
 
-            let person = new PIXI.extras.AnimatedSprite(
-                sheet.data.animations["person_turn"].map(x => PIXI.Texture.from(x))
+            scene.person = new PIXI.extras.AnimatedSprite(
+                sheet.data.animations["person_walk"].map(x => PIXI.Texture.from(x))
             );
-            person.animationSpeed = 0.167; 
-            person.play();
+            scene.person.play();
 
-            person.x = 213;
-            person.y = 270;
-            person.width *= 1.5;
-            person.height *= 1.5;
-            scene.addChild(person);
+            scene.person.x = 213 * 1.5;
+            scene.person.y = 270 * 1.5;
+            scene.person.width *= 2.0 * 1.5;
+            scene.person.height *= 1.5 * 1.5;
+
+            scene.person.vx = 0.0;
+
+            scene.addChild(scene.person);
         });
 
     const margin_left = 30;
@@ -37,13 +44,25 @@ function Main_scene(pixi) {
     
 
     scene.update = (delta, now) => {
+        if(scene.person !== null) {
+            scene.person.x += scene.person.vx * (1.0 + Math.sin(now * scene.person.animationSpeed * 4)) * delta;
 
+            scene.person.animationSpeed = scene.person.vx * 0.15;
+        }
     };
 
     scene.cmd_cb = null;
 
     scene.key_handler = (key, isPress) => {
-
+        if(isPress && (key === 39 || key === 68)) {
+            scene.person.vx = 1.2;
+        }
+        if(isPress && (key === 37 || key === 65)) {
+            scene.person.vx = -1.2;
+        }
+        if(!isPress && (key === 39 || key === 37 || key === 68 || key === 65)) {
+            scene.person.vx = 0;
+        }
     };
 
     scene.select = () => {
