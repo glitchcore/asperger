@@ -2,6 +2,7 @@ let update = () => {};
 let key_handler = (key, isPress) => {};
 
 let nothing_scene;
+let main_scene;
 
 function app(pixi) {
     let stage = pixi.stage;
@@ -12,13 +13,17 @@ function app(pixi) {
     nothing_scene.visible = false;
     stage.addChild(nothing_scene);
 
-    world(nothing_scene);
+    main_scene = Main_scene(pixi);
+    main_scene.visible = false;
+    stage.addChild(main_scene);
+
+    // world(nothing_scene);
 
     window.addEventListener(
         "keydown",
         (event) => {
             key_handler(event.keyCode, true);
-            if(event.keyCode !== 116 && event.keyCode !== 122/* && event.keyCode !== 123*/) {
+            if(event.keyCode !== 116 && event.keyCode !== 122 && event.keyCode !== 123) {
                 event.preventDefault();
             }
         },
@@ -36,7 +41,8 @@ function app(pixi) {
 
     pixi.ticker.add(delta => update(delta, performance.now()));
 
-    select_scene(nothing_scene);
+    // select_scene(nothing_scene);
+    select_scene(main_scene);
 }
 
 let current_scene = null;
