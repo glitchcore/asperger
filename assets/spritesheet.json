@@ -1,0 +1,78 @@
+{"frames": {
+
+"person_turn_0000.png":
+{
+	"frame": {"x":130,"y":0,"w":26,"h":50},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":26,"h":50},
+	"sourceSize": {"w":26,"h":50},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"person_turn_0004.png":
+{
+	"frame": {"x":104,"y":0,"w":26,"h":50},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":26,"h":50},
+	"sourceSize": {"w":26,"h":50},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"person_stay.png":
+{
+	"frame": {"x":78,"y":0,"w":26,"h":50},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":26,"h":50},
+	"sourceSize": {"w":26,"h":50},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"person_turn_0002.png":
+{
+	"frame": {"x":26,"y":0,"w":26,"h":50},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":26,"h":50},
+	"sourceSize": {"w":26,"h":50},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"person_turn_0003.png":
+{
+	"frame": {"x":0,"y":0,"w":26,"h":50},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":26,"h":50},
+	"sourceSize": {"w":26,"h":50},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"person_turn_0001.png":
+{
+	"frame": {"x":52,"y":0,"w":26,"h":50},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":26,"h":50},
+	"sourceSize": {"w":26,"h":50},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"city_0_back.png":
+{
+	"frame": {"x":156,"y":0,"w":800,"h":360},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":800,"h":360},
+	"sourceSize": {"w":800,"h":360},
+	"anchor": {"x":0.5,"y":0.5}
+}},
+"animations": {
+	"person_turn": ["person_turn_0000.png","person_turn_0001.png","person_turn_0002.png","person_turn_0003.png","person_turn_0004.png"]
+},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "spritesheet.png",
+	"format": "RGBA8888",
+	"size": {"w":956,"h":360},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:97e87caa3166c1954032e4ea34b628ba:7570a492c736b491675d9e174cc7e1a4:729adc6043343cfda41c447ce8f464d6$"
+}
+}
