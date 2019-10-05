@@ -124,8 +124,8 @@ class Door extends WorldNode {
 }
 
 
-function world(main_scene) {
-    let player = new Player(main_scene);
+function world(scene) {
+    let player = new Player(scene);
     let npc_sarah = new NPC("Sarah");
     let npc_dave = new NPC("Dave");
 

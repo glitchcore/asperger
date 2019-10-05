@@ -1,4 +1,4 @@
-function Main_scene(pixi) {
+function Nothing_scene(pixi) {
     let scene = new Container();
 
     const margin_left = 30;

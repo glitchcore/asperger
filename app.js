@@ -1,18 +1,18 @@
 let update = () => {};
 let key_handler = (key, isPress) => {};
 
-let main_scene;
+let nothing_scene;
 
 function app(pixi) {
     let stage = pixi.stage;
 
     PIXI.utils.sayHello("LD45 begin!");
 
-    main_scene = Main_scene(pixi);
-    main_scene.visible = false;
-    stage.addChild(main_scene);
+    nothing_scene = Nothing_scene(pixi);
+    nothing_scene.visible = false;
+    stage.addChild(nothing_scene);
 
-    world(main_scene);
+    world(nothing_scene);
 
     window.addEventListener(
         "keydown",
@@ -36,7 +36,7 @@ function app(pixi) {
 
     pixi.ticker.add(delta => update(delta, performance.now()));
 
-    select_scene(main_scene);
+    select_scene(nothing_scene);
 }
 
 let current_scene = null;
