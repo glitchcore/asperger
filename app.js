@@ -6,7 +6,7 @@ let main_scene;
 function app(pixi) {
     let stage = pixi.stage;
 
-    PIXI.utils.sayHello("LD44 begin!");
+    PIXI.utils.sayHello("LD45 begin!");
 
     main_scene = Main_scene(pixi);
     main_scene.visible = false;

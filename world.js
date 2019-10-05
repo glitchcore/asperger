@@ -76,22 +76,30 @@ class NPC extends WorldNode {
 
         this.n = 0;
 
-        setInterval(() => {
+        setTimeout(() => {
             console.log("NPC event");
             this.emit({
                 type: "speak",
                 source: this.name,
-                text:"I can help you " + this.n++ + " times!"
+                text:"Maybe I can help you",
             });
-        }, 5000 + Math.random() * 2000);
+        }, 3000 + Math.random() * 3000);
 
         this.event_handler = (event) => {
             if(event.type === "speak" && !event.text.includes("I hear")) {
                 setTimeout(() => this.emit({
                     type: "speak",
                     source: this.name,
-                    text:`I hear ${event.source === "player" ? "master" : "you"} say ${event.text}`
-                }), 1000 + Math.random() * 1000);
+                    text:`I hear ${event.source === "player" ? "master" : event.source} say ${event.text}`
+                }), 1000 + Math.random() * 3000);
+            }
+
+            if(event.type === "speak" && event.text.includes("I hear")) {
+                setTimeout(() => this.emit({
+                    type: "speak",
+                    source: this.name,
+                    text:`something happened`
+                }), 4000 + Math.random() * 3000);
             }
             
             return true;
@@ -105,15 +113,32 @@ class Location extends WorldNode {
     }
 }
 
+class Door extends WorldNode {
+    constructor() {
+        super(null);
+
+        this.event_handler = (event) => {
+            return false;
+        }
+    }
+}
+
 
 function world(main_scene) {
     let player = new Player(main_scene);
     let npc_sarah = new NPC("Sarah");
     let npc_dave = new NPC("Dave");
 
-    let location = new Location();
+    let location_0 = new Location();
+    let location_1 = new Location();
 
-    subscribe(player, location);
-    subscribe(npc_sarah, location);
-    subscribe(npc_dave, location);
+    let door = new Door();
+
+    subscribe(player, location_0);
+    subscribe(npc_sarah, location_0);
+
+    subscribe(door, location_0);
+    subscribe(door, location_1);
+
+    subscribe(npc_dave, location_0);
 }
