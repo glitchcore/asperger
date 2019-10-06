@@ -3,6 +3,8 @@ function Main_scene(pixi) {
 
     let sheet = null;
     scene.person = null;
+    scene.walking_person = null;
+    scene.turning_person = null;
 
     PIXI.loader
         .add("assets/spritesheet.json")
@@ -17,17 +19,19 @@ function Main_scene(pixi) {
 
             scene.addChild(background);
 
-            scene.person = new PIXI.extras.AnimatedSprite(
+            scene.walking_person = new PIXI.extras.AnimatedSprite(
                 sheet.data.animations["person_walk"].map(x => PIXI.Texture.from(x))
             );
-            scene.person.play();
+            // scene.person.play();
 
-            scene.person.x = 213 * 1.5;
-            scene.person.y = 270 * 1.5;
-            scene.person.width *= 2.0 * 1.5;
-            scene.person.height *= 1.5 * 1.5;
+            scene.walking_person.x = 213 * 1.5;
+            scene.walking_person.y = 270 * 1.5;
+            scene.walking_person.width *= 2.0 * 1.5;
+            scene.walking_person.height *= 1.5 * 1.5;
 
-            scene.person.vx = 0.0;
+            scene.walking_person.vx = 0.0;
+            scene.person.vturn = 0.0;
+            scene.person.turn = 0.0;
 
             scene.addChild(scene.person);
         });
@@ -48,6 +52,14 @@ function Main_scene(pixi) {
             scene.person.x += scene.person.vx * (1.0 + Math.sin(now * scene.person.animationSpeed * 4)) * delta;
 
             scene.person.animationSpeed = scene.person.vx * 0.15;
+
+            if(scene.person.vturn != 0) {
+                if(scene.person.turn <= 1.0 && scene.person.turn >= -1.0) {
+                    scene.person.turn += scene.person.vturn * delta;
+                }
+            } else {
+
+            }
         }
     };
 
